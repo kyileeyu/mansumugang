@@ -1,15 +1,15 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="여기는 만수무강!"/>
+  <Intro/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import Intro from './components/Intro.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Intro,
   }
 }
 </script>
@@ -23,4 +23,15 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+html{
+  margin: 0;
+  padding: 0;
+}
+body{ 
+  background-image: url('assets/background.png');
+  background-repeat : no-repeat;
+  background-size : cover;
+  height: 100vh;
+}
+
 </style>
