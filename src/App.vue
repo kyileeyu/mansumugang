@@ -1,37 +1,61 @@
 <template>
-  <Intro/>
+  <Intro v-if="showIntro == true"/>
+  <Main v-if="showIntro == false"/>
 </template>
 
 <script>
 
 import Intro from './components/Intro.vue'
+import Main from './components/Main.vue'
 
 export default {
   name: 'App',
+  data(){
+    return {
+      showIntro: true,
+
+    }
+  },
   components: {
-    Intro,
+    Intro :Intro,
+    Main : Main,
+  },
+  methods:{
+
+  },
+  mounted(){
+    setTimeout(() =>{
+      this.showIntro = false;
+    },2000);
   }
 }
 </script>
 
 <style>
+*{
+  box-sizing: border-box;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  max-width: 600px;
 }
 html{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 body{ 
-  background-image: url('assets/background.png');
-  background-repeat : no-repeat;
-  background-size : cover;
-  height: 100vh;
+  
+    max-width: 600px;
+    margin:0 auto;
+
+}
+p{
+  margin:0;
 }
 
 </style>

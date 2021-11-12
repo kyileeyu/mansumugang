@@ -9,23 +9,23 @@
 
 </template>
 <script>
-// function hideDiv (){
-//   document.getElementById("intro").style.display="none";
-// }
-// setTimeout(hideDiv(),3000); 
+
+
 export default {
-    setup() {
-        
-    },
+    name: 'Intro',
 }
 </script>
 <style>
     .intro{
-        margin : 200px auto;
-        max-width: 300px;
+        padding-top: 100px;
+        padding-left : 100px;
+        padding-right : 100px;
         color: #fff;
-        width : 100vw;
         height : 100vh;
+        background-image: url('../assets/background.png');
+        background-repeat : no-repeat;
+        background-position: center;
+        background-size : 600px 100vh;
     }
     .intro-text{
         margin-bottom: 60px;
@@ -38,8 +38,10 @@ export default {
     }
     .team-name{
         position: fixed;
-        left: 40%;
-        bottom : 0;
+        left: 0;
+        right: 0;
+        bottom : 20px;
+        
     }
 </style>
 
