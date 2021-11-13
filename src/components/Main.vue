@@ -11,15 +11,19 @@
             <p class="menu-desc">빠르게 혜택을 찾아보세요</p>
             <div class="menu-list">
                 <p class="menu-title">숨겨진 건보료찾기</p>
-                <button class="btn">혜택 조회하기</button>
+                <button class="btn" @click="openQ(1)">혜택 조회하기</button>
             </div>
             <div class="menu-list">
                 <p class="menu-title">무료로 건강검진하기</p>
+                <router-link to="/question">
                 <button class="btn">혜택 조회하기</button>
+                </router-link>
             </div>
             <div class="menu-list">
                 <p class="menu-title">가까운 센터찾기</p>
+                <router-link to="/question">
                 <button class="btn">위치찾기</button>
+                </router-link>
             </div>
             
         </div>
@@ -27,8 +31,23 @@
 </template>
 
 <script>
+// import Question from './components/Question.vue'
+
 export default {
-    
+    name: 'Main',
+    data(){
+        return {
+
+        }
+
+    },
+    methods: {
+        openQ(id){
+            this.paramId =id;
+            let router = this.$router;
+            router.push({name:'Question', params:{productId:this.paramId}});
+        }
+    },
 }
 </script>
 

@@ -1,5 +1,6 @@
 <template>
   <Intro v-if="showIntro == true"/>
+  <router-view></router-view>
   <Main v-if="showIntro == false"/>
 </template>
 
