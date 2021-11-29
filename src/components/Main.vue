@@ -1,53 +1,64 @@
 <template>
-    <div class="main">
+    <!-- <Intro v-if="showIntro == true"/> -->
+    <div v-if="showIntro == false" class="main">
         <div class="header">
-            <p>건강보험 보장성 확대를 위한 정보제공 서비스</p>
-            <h3 class="header-title">숨겨진<br>
-            보험료를<br>
-            찾아서
+            <h3 class="header-title">
+                <span>안녕하세요 :D</span><br>
+                건강보험 혜택을 건보장이<br>
+                한 눈에 보여 드릴게요.
             </h3>
         </div>
-        <div class="menu">
-            <p class="menu-desc">빠르게 혜택을 찾아보세요</p>
-            <div class="menu-list">
-                <p class="menu-title">숨겨진 건보료찾기</p>
-                <button class="btn" @click="openQ(1)">혜택 조회하기</button>
+        <div class="main-desc">
+            <div class="main-desc-list">
+                남들은 건강보험료를<br/>
+                얼마나 내고 있을까?
+                <p>🤔</p>
             </div>
-            <div class="menu-list">
-                <p class="menu-title">무료로 건강검진하기</p>
-                <router-link to="/question">
-                <button class="btn">혜택 조회하기</button>
+            <div class="main-desc-list">
+                무료인데 나만<br/>
+                돈을 내고 있었다고?
+                <p>😱</p>
+            </div>
+        </div>
+        <div class="bottom">
+                <p class="menu-title">
+                    나만 몰랐던 <span>건강보험 혜택</span>,<br/>
+                    지금 바로 확인해 보세요!
+                </p>
+                <router-link to="/basic" class="btn">
+                    나만의 혜택 조회하기          
                 </router-link>
-            </div>
-            <div class="menu-list">
-                <p class="menu-title">가까운 센터찾기</p>
-                <router-link to="/question">
-                <button class="btn">위치찾기</button>
-                </router-link>
-            </div>
-            
         </div>
     </div>
 </template>
 
 <script>
-// import Question from './components/Question.vue'
+// import Intro from './Intro.vue';
 
 export default {
     name: 'Main',
     data(){
         return {
-
+            showIntro: false,
         }
 
     },
     methods: {
-        openQ(id){
-            this.paramId =id;
-            let router = this.$router;
-            router.push({name:'Question', params:{productId:this.paramId}});
-        }
+    // openQ(id){
+    //     this.paramId =id;
+    //     let router = this.$router;
+    //     router.push({name:'Question', params:{productId:this.paramId}});
+    // }
     },
+
+    components:{
+        // Intro :Intro,
+    },
+    mounted(){
+        setTimeout(() =>{
+        this.showIntro = false;
+        },2000);
+    }
 }
 </script>
 
@@ -55,50 +66,80 @@ export default {
 .main{
     color:#fff;
     text-align: left;
-    padding-top: 100px;
+    background-image: url('../assets/2.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: #eee;
+    object-fit: fill;
+    height: 100vh;
 }
 .header{
-    padding: 0 100px;
-    background-color: #fff;
-    color: #7F7F7F;
+    /* border-radius:0 0 40vw 40vw; */
+    text-align: center;
+    height: 40vh;
+    color: #888282;
 }
 .header-title{
-    color: #ed0800;
-}
-.menu{
-    padding-left : 100px;
-    padding-right : 100px;
+    padding-top: 100px;
+    color: #FFF;
+    font-weight: 400;
 
-    /* background-color: #FC7054; */
-    background-image: url('../assets/background.png');
-    background-repeat : no-repeat;
-    background-position: center;
-    background-size : 600px 100vh;
+}
 
-    text-align: center;
+.header-title span{
+    margin-bottom: 20px;
+    display: inline-block;
+    font-size: 32px;
 }
-.menu-desc{
-    padding : 20px 0;
+.main-desc-list{
+    color:#BFBFBF;
 }
-.menu-title{
-    font-weight: 700;
+.main-desc-list p{
+    font-size: 40px;
+    margin-bottom : 20px;
+}
+.emoticon{
+    width:50px;
+    height: 50px;
+}
+
+/* 이모티콘 세트 */
+.main-desc{
+    padding: 50px 10vw 0;
+ }
+.main-desc-list{
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.bottom{
+    margin: 0 10vw;
+    padding: 30px;
+    height: 25vh;
+    
+    background-color:#fff;
+    border-radius: 10px;
+    text-align: right;
+    color: #111;
     font-size: 18px;
 }
-.menu-list{
-    border-bottom: 1px solid #fff;
-    margin-bottom: 30px;
-    padding-bottom: 30px;
+.menu-title{
+    margin-bottom: 40px;
 }
-.btn{
-    margin-top: 15px;
+a.btn{
+    margin: 0 20px;
     padding : 7px 20px;
-    background-color: #fff;
+    background-color: #ED0800;
     border:none;
-    border-radius: 30px;
-    color: red;
-    box-shadow: inset 0px 1px 7px 2px #eee;
+    border-radius: 10px;
 
 
 }
 
+.btn:focus, .btn:active{
+    text-decoration: none;
+    color:#fff;
+}
 </style>

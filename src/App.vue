@@ -1,13 +1,13 @@
 <template>
-  <Intro v-if="showIntro == true"/>
+  <!-- <Intro v-if="showIntro == true"/> -->
   <router-view></router-view>
-  <Main v-if="showIntro == false"/>
+  <!-- <Main v-if="showIntro == false"/> -->
 </template>
 
 <script>
 
-import Intro from './components/Intro.vue'
-import Main from './components/Main.vue'
+// import Intro from './components/Intro.vue';
+// import Main from './components/Main.vue';
 
 export default {
   name: 'App',
@@ -18,8 +18,8 @@ export default {
     }
   },
   components: {
-    Intro :Intro,
-    Main : Main,
+    // Intro :Intro,
+    // Main : Main,
   },
   methods:{
 
@@ -35,6 +35,10 @@ export default {
 <style>
 *{
   box-sizing: border-box;
+  /* height: 100vh; */
+}
+h1,h2,h3{
+  margin:0;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -52,6 +56,7 @@ html{
 body{ 
   
     max-width: 600px;
+    height: 100vh;
     margin:0 auto;
 
 }
