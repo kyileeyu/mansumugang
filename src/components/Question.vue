@@ -1,22 +1,28 @@
 <template>
-    {{$route.params.id}}
     <div class="question">
-     
+        <p class="question-sub">▷ 진행상황</p>
         <div class="progress">
             <div class="progress-bar pg-23"></div>
             <!-- <span>23%</span> -->
         </div>
-        <p class="question-desc">
+        <div class="question-desc">
+            <p>
             해당되는 사항을<br/>
             선택해주세요.
-        </p>
-        <h2 class="question-list">
-            현재 군복무를 하고 계시나요?
+            </p>
+            <p class="arrow">>>></p>
+        </div>
+        <h2 class="question-title">
+            현재 군복무를 <br>하고 계시나요?
         </h2>
         <div class="select-btn">
             <button>맞아요</button>
             <button>아니에요</button>
         </div>
+        <p class="question-sub sub-option">▷ 선택사항</p>
+        <p class="question-selected-option">
+        27세, 여성, 출산예정, 육아중, 1세 미만
+        </p>
     </div>
 </template>
 <script>
@@ -31,32 +37,42 @@ export default {
 }
 </script>
 <style>
+
 .question{
     background-color: #eee;
     height: 100vh;
-    padding : 10vh 10vw;
+    padding : 10vh 40px;
 }
 
+.question-sub{
+    text-align: left;
+    color:#666;
+    font-size: 14px;
+}
 
 .question-desc{
-    margin-top: 40px;
-    margin-left: 20px;
+    margin: 40px 0 40px 20px;
+    /* margin-left: 20px; */
+    display: flex;
+    justify-content: right;
+    align-items: center;
     text-align: left;
-    color:#aaa;
+    color:#666;
+}
+
+.question-desc .arrow{
+    margin-left: 50px;
+    margin-right: 10px;
+    font-size: 40px;
+    color: #ddd
 }
 
 
-.progress span{
-      font-size:12px;
-      line-height: 10px;
-      font-weight: 700;
-      color: red;
-    }
       
 .progress {
     margin : 0 auto;
     width: 100%;
-    margin-top:20px;
+    margin-top:8px;
     background: #fff;
     border: 1px solid #fff;
     border-radius: 3px;
@@ -69,12 +85,23 @@ export default {
     background: #ed0800;
 }
 
-.side-progress{
-    display: flex;
-    justify-content: space-between;
-    padding-top:20px;
+
+
+
+
+/* 질문 문제 */
+
+.question-title{
+    width: 60%;
+    font-weight: 400;
+    text-align: left;
+    margin-bottom: 30px;
 }
+
+
+/* 버튼 */
 .select-btn{
+    margin-bottom: 70px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -82,7 +109,7 @@ export default {
 }
 .select-btn button{
     margin-top: 20px ;
-    padding: 15px 30px;
+    padding: 30px 30px;
     
     display: block;
     width: 100%;
@@ -91,7 +118,21 @@ export default {
     border: none;
     border-radius: 10px;
     
-    font-size: 16px;
+    font-size: 20px;
+    color:#525252;
 }
+
+/* 선택사항 */
+
+.sub-option{
+    margin-bottom:20px;
+}
+.question-selected-option{
+    font-size: 12px;
+    color:#525252;
+    text-align: left;
+
+}
+
 
 </style>
