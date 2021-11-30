@@ -15,9 +15,9 @@
                 <p>🤔</p>
             </div>
             <div class="main-desc-list">
+                <p>😱</p>
                 무료인데 나만<br/>
                 돈을 내고 있었다고?
-                <p>😱</p>
             </div>
         </div>
         <div class="bottom">
@@ -28,6 +28,9 @@
                 <router-link to="/basic" class="btn">
                     나만의 혜택 조회하기          
                 </router-link>
+        </div>
+        <div class="footer">
+            만수무강 X 건보장
         </div>
     </div>
 </template>
@@ -66,7 +69,7 @@ export default {
 .main{
     color:#fff;
     text-align: left;
-    background-image: url('../assets/2.png');
+    background-image: url('../assets/3.png');
     background-size: 100%;
     background-repeat: no-repeat;
     background-color: #eee;
@@ -80,7 +83,7 @@ export default {
     color: #888282;
 }
 .header-title{
-    padding-top: 100px;
+    padding-top: 140px;
     color: #FFF;
     font-weight: 400;
 
@@ -96,44 +99,65 @@ export default {
 }
 .main-desc-list p{
     font-size: 40px;
-    margin-bottom : 20px;
+    margin-top : 20px;
 }
 .emoticon{
-    width:50px;
-    height: 50px;
+    width:75px;
+    height: 75px;
 }
 
 /* 이모티콘 세트 */
 .main-desc{
-    padding: 50px 10vw 0;
+    margin: 20px 0;
+    padding: 0 2vw 0;
  }
 .main-desc-list{
-    margin-bottom: 30px;
+    margin-top: 30px;
     display: flex;
     justify-content: space-around;
 
 }
 
+.menu-title{
+    text-align: right;
+
+}
 .bottom{
-    margin: 0 10vw;
+    margin: 0 20px;
     padding: 30px;
     height: 25vh;
-    
+    text-align: center;
     background-color:#fff;
     border-radius: 10px;
-    text-align: right;
     color: #111;
     font-size: 18px;
 }
 .menu-title{
     margin-bottom: 40px;
 }
-a.btn{
-    margin: 0 20px;
-    padding : 7px 20px;
+.menu-title span{
+    color: #ED0800;
+}
+a,
+a:visited,
+a:hover
+{
+    text-decoration: none;
+}
+.btn,
+.btn:visited,
+.btn:hover{
+    color: #fff;
+
+}
+
+.btn{
+    width:100%;
+    /* margin: 0 30px; */
+    padding : 13px 30px;
     background-color: #ED0800;
-    border:none;
     border-radius: 10px;
+    font-weight: 700;
 
 
 }
@@ -141,5 +165,16 @@ a.btn{
 .btn:focus, .btn:active{
     text-decoration: none;
     color:#fff;
+}
+.footer{
+    position: fixed;
+    /* margin-top:20px; */
+    bottom: 10px;
+     left: 0;
+     right: 0;
+      margin: 0 auto;
+    text-align: center;
+    color: #525252;
+    font-size: 12px;
 }
 </style>
