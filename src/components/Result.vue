@@ -1,14 +1,28 @@
 <template>
 <div class="result">
+    <!-- <img src="../assets/1.png" class="result-img" /> -->
     <h3 class="result-title">
-        나의 혜택정보
+        의료비 지원 혜택을<br/>
+        확인해보세요.
     </h3>
     <p class="result-desc">
-        나에게 해당되는 건강보험 혜택을 확인해 보세요.
+        ▷ 내 건강보험료와 비교해보세요.
     </p>
-    <div class="selected-option">
-        <p>선택사항</p>
-        <span>27세,여성,육아중,1세미만 자녀</span>
+    <div class="result-item">
+        <div class="tax-desc">
+            현재 20대 평균<br>
+            건강보험료 납부금액은
+            <div class="tax-result">
+                <span>25,000</span>원 입니다.
+            </div>
+        </div>
+        
+    </div>
+    <div class="result-selected-list">
+        <div class="result-selected">
+            당신이 받을 수 있는<br> 혜택 리스트 입니다.
+            <div class="result-selected-option">27세, 여성, 출산예정, 육아중, 1세미만</div>
+        </div>
     </div>
     <div class="result-info">
         <div class="result-item">
@@ -26,14 +40,40 @@
                 자녀 수 상관없이 250,000원 지급
             </div>
         </div>
-        
     </div>
+    <!-- 위치보기란 -->
+    <div class="location-list">
+        <div class="location-list-item">
+            <p>우울증 치료   </p>
+            >
+            <router-link to="/" class="location-btn">
+                위치보기
+            </router-link>
+        </div>
+        <div class="location-list-item">
+            <p>치과 급여</p>
+            >
+            <router-link to="/" class="location-btn">
+                위치보기
+            </router-link>
+        </div>
+        <div class="location-list-item">
+            <p>건강검진</p>
+            >
+            <router-link to="/" class="location-btn">
+                위치보기
+            </router-link>
+        </div>
+    </div>
+    <div class="footer">
+            만수무강 X 건보장
+        </div>
 
 </div>
 </template>
 
 <script>
-
+import axios from 'axios';
 
 
 export default {
@@ -47,31 +87,75 @@ export default {
   components: {
    
   },
-  methods:{
+    methods:{
+        getChimai(){
+        axios.get(`http://drkjhyuck.pythonanywhere.com/dementiactr/?city_name=%EC%9A%A9%EC%9D%B8%EC%8B%9C`)
+        .then(res =>{
+            console.log(res);
+            console.log('성공!');
+            // this.loadCity =res.data.result;
+            })
+        .catch((error) => {
+            console.error(error);
+            }
+            );
+        },
 
-  },
-  mounted(){
+    },
+    mounted(){
+        this.getChimai()
 
-  }
+    }
 }
 </script>
 
 <style>
+/* 배경 */
+.result-img{
+    position: relative;
+    right: 40px;
+    top: -30vh;
+    width: 375px;
+}
+
+
 .result{
+    background-image: url('../assets/result.png');
+    background-repeat: no-repeat;
+
+    background-size: 375px, 30%;
     background-color: #eee;
     height: 100vh;
-    padding : 10vh 10vw;
+    padding : 10vh 20px;
 }
+
+
+
 .result-title{
-    margin:0 0 30px;
-    color:firebrick;
+    margin:0 0 20px;
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 400;
+    color:#fff;
     text-align: left;
 }
 .result-desc{
     margin-bottom:30px;
     text-align: left;
-    width: 40%;
+    color:#fff;
+    font-size: 13px;
+    /* width: 40%; */
 }
+
+
+
+
+/* 평균 납부금액 */
+.tax-desc{
+    padding: 10px;
+    font-size: 20px;
+}
+
 
 .selected-option{
     margin-bottom: 30px;
@@ -80,7 +164,11 @@ export default {
 }
 .result-info{
     width: 100%;
+    padding-bottom: 20px;
+    border-bottom: 3px solid #ddd;
 }
+
+/* 결과 정보지 */
 .result-item{
     text-align: left;
     margin-bottom: 10px;
@@ -97,5 +185,29 @@ export default {
 .info-desc{
     font-size: 14px;
 
+}
+
+
+/* 위치정보 */
+.location-list{
+    padding: 10px 0;
+}
+
+.location-list-item{
+    padding : 5px 10px;
+    margin : 0 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+}
+
+
+.location-btn{
+    padding:  5px 15px;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #F95841;
+    font-weight: 500;
 }
 </style>
