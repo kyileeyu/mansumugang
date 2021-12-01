@@ -19,6 +19,10 @@ const routes = [
     path: "/basic",
     name: "basic",
     component: Basic,
+    // props: {
+    //   gender: 1,
+    //   ageIndex: 1,
+    // },
   },
   {
     path: "/question",
@@ -29,6 +33,7 @@ const routes = [
     path: "/result",
     name: "result",
     component: Result,
+    // component: "answerList",
   },
 ];
 

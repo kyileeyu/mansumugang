@@ -13,11 +13,11 @@
             <p class="arrow">>>></p>
         </div>
         <h2 class="question-title">
-            현재 군복무를 <br>하고 계시나요?
+            {{qList[num]}}
         </h2>
-        <div class="select-btn">
-            <button>맞아요</button>
-            <button>아니에요</button>
+        <div class="select-btn" >
+            <button @click="goNext(num,1)">맞아요</button>
+            <button @click="goNext(num,2)">아니에요</button>
         </div>
         <p class="question-sub sub-option">▷ 선택사항</p>
         <p class="question-selected-option">
@@ -26,14 +26,36 @@
     </div>
 </template>
 <script>
+import router from "../router";
+// import {  router } from "vue-router";
 export default {
     name: 'Question',
     data(){
-        return {
+        return {   
+            qList: ['임신중이신가요?','출산경험이 있으신가요?','군대에 복역중이신가요?',"장애가 있으신가요?","흡연을 하시나요?","우울증이 있으신가요?"],
+            num:0,
+            answerList:[0,0,0,0,0,0,0,0]
+        }
+    },
+    methods:{
+        goNext(num,index){
+            if(num == 5){
+                const answerList=this.answerList;
+                router.push({ name:'result', params:{answerList}})
+            }
+            else{
+                this.answerList[num] = index;
+                this.num = this.num+1;
+            }
+            router
+            
 
         }
+    },
+    mounted() {
+        
+    },
 
-},
 }
 </script>
 <style>

@@ -12,10 +12,10 @@
             <p class="selected-item-title">
                 성별
             </p>
-            <select>
-                <option selected disabled>성별선택</option>
-                <option>남</option>
-                <option>여</option>
+            <select v-model="gender">
+                <option selected disabled >성별선택</option>
+                <option value="1">남</option>
+                <option value="2">여</option>
             </select>
         </div>
         <div class="select-item">
@@ -24,8 +24,7 @@
             </p>
             <select>
                 <option selected disabled>연령 선택</option>
-                <option>{{i-40}}년생</option>
-                <option >여</option>
+                <option v-for="i in 6" :key="i">{{i}}0대</option>
             </select>
         </div>
         <div class="select-item">
@@ -35,13 +34,13 @@
             <div class="select">
             <select>
                 <option selected disabled>지역선택</option>
-                <option>{{i-40}}년생</option>
-                <option>여</option>
+                <option>서울특별시</option>
+                <option>경기도</option>
             </select>
             <select>
                 <option selected disabled>시/군 선택</option>
-                <option>{{i-40}}년생</option>
-                <option >여</option>
+                <option>부천시</option>
+                <option ></option>
             </select>
             </div>
         </div>
@@ -72,6 +71,7 @@ export default {
   name: 'Result',
   data(){
     return {
+        gender: 0,
     //   showIntro: true,
 
     }
