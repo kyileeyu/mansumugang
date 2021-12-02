@@ -4,6 +4,7 @@ import Main from "./components/Main.vue";
 import Intro from "./components/Intro.vue";
 import Result from "./components/Result.vue";
 import Basic from "./components/Basic.vue";
+import Location from "./components/Location.vue";
 const routes = [
   {
     path: "/intro",
@@ -34,6 +35,11 @@ const routes = [
     name: "result",
     component: Result,
     // component: "answerList",
+  },
+  {
+    path: "/loca",
+    name: "location",
+    component: Location,
   },
 ];
 

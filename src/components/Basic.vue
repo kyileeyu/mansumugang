@@ -12,8 +12,7 @@
             <p class="selected-item-title">
                 성별
             </p>
-            <select v-model="gender">
-                <option selected disabled >성별선택</option>
+            <select v-model="info.gender" aria-label="성별 선택">
                 <option value="1">남</option>
                 <option value="2">여</option>
             </select>
@@ -22,9 +21,8 @@
             <p class="selected-item-title">
                 만 나이
             </p>
-            <select>
-                <option selected disabled>연령 선택</option>
-                <option v-for="i in 6" :key="i">{{i}}0대</option>
+            <select v-model="info.age" aria-label="만 나이 선택">
+                <option v-for="(a,i) in 70"  v-bind:key="a+1" >{{i+1}}</option>
             </select>
         </div>
         <div class="select-item">
@@ -32,15 +30,15 @@
                 지역
             </p>
             <div class="select">
-            <select>
-                <option selected disabled>지역선택</option>
-                <option>서울특별시</option>
-                <option>경기도</option>
+            <select v-model="info.loca" aria-label="지역 선택">
+                <option value="seoul">서울특별시</option>
+                <option value="gunggi">경기도</option>
             </select>
-            <select>
-                <option selected disabled>시/군 선택</option>
-                <option>부천시</option>
-                <option ></option>
+            <select class="select"  v-model="info.city" v-if="info.loca =='seoul'" aria-label="시 선택">
+                <option value="">-</option>
+            </select>
+            <select class="select"  v-model="info.city" aria-label="시 선택" v-else>
+                <option v-for="i in si" v-bind:key="i" > {{i}}</option>
             </select>
             </div>
         </div>
@@ -57,8 +55,9 @@
         </div>
     </router-link>
      <div class="footer">
-            만수무강 X 건보장
-        </div>
+        만수무강 X 건보장
+    </div>
+    <!-- {{check()}}; -->
 
 </div>
 </template>
@@ -71,7 +70,17 @@ export default {
   name: 'Result',
   data(){
     return {
-        gender: 0,
+        si:['수원시','용인시','성남시','부천시','화성시','안산시',
+        '안양시','평택시','시흥시','김포시','광주시','광명시',
+        '군포시','하남시','오산시','이천시','안성시','의왕시','양평군',
+        '여주시','과천시','고양시','남양주시','파주시','의정부시',
+        '양주시','구리시','포천시','동두천시','가평군','연천군'],
+        info:{
+            age:'',
+            gender: '',
+            loca:'',
+            city:''
+        }
     //   showIntro: true,
 
     }
@@ -80,9 +89,12 @@ export default {
    
   },
   methods:{
-
+      check(){
+          console.log(this.info);
+      }
   },
   mounted(){
+      this.check()
 
   }
 }

@@ -20,7 +20,7 @@
     </div>
     <div class="result-selected-list">
         <div class="result-selected">
-            당신이 받을 수 있는<br> 혜택 리스트 입니다.
+            당신이 선택한 <br> 보장정보 입니다.
             <div class="result-selected-option">27세, 여성, 출산예정, 육아중, 1세미만</div>
         </div>
     </div>
@@ -46,21 +46,21 @@
         <div class="location-list-item">
             <p>우울증 치료   </p>
             >
-            <router-link to="/" class="location-btn">
+            <router-link to="/loca" class="location-btn">
                 위치보기
             </router-link>
         </div>
         <div class="location-list-item">
             <p>치과 급여</p>
             >
-            <router-link to="/" class="location-btn">
+            <router-link to="/loca" class="location-btn">
                 위치보기
             </router-link>
         </div>
         <div class="location-list-item">
             <p>건강검진</p>
             >
-            <router-link to="/" class="location-btn">
+            <router-link to="/loca" class="location-btn">
                 위치보기
             </router-link>
         </div>
@@ -110,6 +110,17 @@ export default {
 </script>
 
 <style>
+
+/* 스크롤바*/
+.result{
+ -ms-overflow-style: none;
+ }
+ 
+::-webkit-scrollbar {
+  display: none;
+}
+
+
 /* 배경 */
 .result-img{
     position: relative;
@@ -156,19 +167,40 @@ export default {
     font-size: 20px;
 }
 
+/* 선택한 리스트 */
+.result-selected-list{
+    background-image: url('../assets/select.png');
+    background-repeat: no-repeat;
+    background-size: 335px,100px;
+    padding: 50px 20px;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: left;
+    color: #fff;
+}
+.result-selected-option{
+    margin-top:20px;
+     font-size: 14px;
+    font-weight: 400;
+    text-align: right;
+}
 
 .selected-option{
     margin-bottom: 30px;
     text-align: right;
     color: #aaa;
 }
+
+
+
+
+/* 결과 정보지 */
 .result-info{
     width: 100%;
     padding-bottom: 20px;
     border-bottom: 3px solid #ddd;
 }
 
-/* 결과 정보지 */
 .result-item{
     text-align: left;
     margin-bottom: 10px;
@@ -190,12 +222,17 @@ export default {
 
 /* 위치정보 */
 .location-list{
+    position:relative;
+    left: -20px;
     padding: 10px 0;
+    width:375px;
+    padding-bottom: 50px;
+    background-color: #eee;
 }
 
 .location-list-item{
     padding : 5px 10px;
-    margin : 0 20px 50px;
+    margin : 0 20px ;
     display: flex;
     justify-content: space-between;
     align-items: center;

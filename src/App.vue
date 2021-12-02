@@ -36,8 +36,6 @@ export default {
 *{
   box-sizing: border-box;
   font-family: 'Nanum Gothic', sans-serif;
-/* max-width: 375px; */
-  /* height: 100vh; */
 }
 h1,h2,h3{
   margin:0;
@@ -49,6 +47,7 @@ h1,h2,h3{
   text-align: center;
   color: #2c3e50;
   max-width: 375px;
+  height :100%;
   margin: 0 auto;
   background-color: #eee;
 }
@@ -60,7 +59,7 @@ html{
 body{ 
   
     max-width: 600px;
-    height: 100vh;
+    /* height: 100vh; */
     margin:0 auto;
 
 }

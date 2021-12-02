@@ -168,11 +168,13 @@ a:hover
 }
 .footer{
     position: fixed;
-    /* margin-top:20px; */
-    bottom: 10px;
-     left: 0;
-     right: 0;
-      margin: 0 auto;
+    padding-bottom: 10px;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 375px;
+    background-color: #eee;
     text-align: center;
     color: #525252;
     font-size: 12px;
