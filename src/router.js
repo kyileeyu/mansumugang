@@ -1,5 +1,5 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Question from "./components/Question.vue";
+// import Question from "./components/Question.vue";
 import Main from "./components/Main.vue";
 import Intro from "./components/Intro.vue";
 import Result from "./components/Result.vue";
@@ -20,17 +20,14 @@ const routes = [
     path: "/basic",
     name: "basic",
     component: Basic,
-    // props: {
-    //   gender: 1,
-    //   ageIndex: 1,
-    // },
   },
-  {
-    path: "/question",
-    name: "question",
-    component: Question,
-    props: true,
-  },
+  // {
+  //   path: "/question",
+  //   name: "question",
+  //   component: Question,
+  //   // component: () => import("./components/question.vue"),
+  //   props: true,
+  // },
   {
     path: "/result",
     name: "result",

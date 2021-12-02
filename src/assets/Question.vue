@@ -28,10 +28,12 @@
 <script>
 import router from "../router";
 
-// console.log(router.info);
 
 export default {
-    name: 'Question',
+    name: 'question',
+    props: {
+        info : Object,
+    },
     data(){
         return {   
             qList: ['임신중이신가요?','출산경험이 있으신가요?','군대에 복역중이신가요?',"장애가 있으신가요?","흡연을 하시나요?","우울증이 있으신가요?"],
@@ -40,23 +42,37 @@ export default {
         }
     },
     methods:{
+        isMale(info){
+            if(info.gender == 1){
+                this.num = 2;
+            }}
+        ,
+        isFe(info){
+            if(info.gender == 2){
+                if(this.num==2){
+                    this.num=3;
+                }
+            }
+        },
         goNext(num,index){
             if(num == 5){
                 const answerList=this.answerList;
-                router.push({ name:'result', params:{answerList}})
+                router.push({ name:'result', params:{answerList}});
+                console.log(answerList);
             }
             else{
+                console.log(this.answerList);
                 this.answerList[num] = index;
                 this.num = this.num+1;
             }
-            router
-            
-
-        }
-    },
-    mounted() {
+        },
         
     },
+    mounted() {
+        isMale(info),
+        isFe(info)
+    }
+    
 
 }
 </script>

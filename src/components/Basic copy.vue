@@ -1,5 +1,5 @@
 <template>
-<div class="basic" v-if="page == 'basic'">
+<div class="basic">
     <h3 class="basic-title">
         개인정보는 저장하지 않아요!
     </h3>
@@ -48,7 +48,8 @@
         <span>약 3분정도 소요 예정</span>
         </p>
     </div>
-    <button class="question-btn" @click="goQuestion">
+    <button to="/question" class="question-btn" @click="goQuestion"
+     >
         <p>다음페이지로 </p>
         <div class="next-btn">
             <img src="../assets/next.png"/>
@@ -57,42 +58,9 @@
      <div class="footer">
         만수무강 X 건보장
     </div>
+    {{check()}};
 
 </div>
-
-
-
-
-
-<!-- 질문지 -->
-
-    <div class="question" v-if="page == 'question'">
-        <p class="question-sub">▷ 진행상황</p>
-        <div class="progress">
-            <div class="progress-bar pg-23"></div>
-            <!-- <span>23%</span> -->
-        </div>
-        <div class="question-desc">
-            <p>
-            해당되는 사항을<br/>
-            선택해주세요.
-            </p>
-            <p class="arrow">>>></p>
-        </div>
-        <h2 class="question-title">
-            {{qList[num]}}
-        </h2>
-        <div class="select-btn" >
-            <button @click="goNext(num,1)">맞아요</button>
-            <button @click="goNext(num,2)">아니에요</button>
-        </div>
-        <p class="question-sub sub-option">▷ 선택사항</p>
-        <p class="question-selected-option">
-        27세, 여성, 출산예정, 육아중, 1세 미만
-        </p>
-    </div>
-
-
 </template>
 
 <script>
@@ -103,7 +71,6 @@ export default {
   name: 'basic',
   data(){
     return {
-        page:'basic',
         si:['수원시','용인시','성남시','부천시','화성시','안산시',
         '안양시','평택시','시흥시','김포시','광주시','광명시',
         '군포시','하남시','오산시','이천시','안성시','의왕시','양평군',
@@ -114,59 +81,33 @@ export default {
             gender: '',
             loca:'',
             city:''
-        },
-
-        qList: ['임신중이신가요?','출산경험이 있으신가요?','군대에 복역중이신가요?',"장애가 있으신가요?","흡연을 하시나요?","우울증이 있으신가요?"],
-        num:0,
-        answerList:[0,0,0,0,0,0]
-
+        }
     //   showIntro: true,
     }},
     components: {
         
     },
     methods:{
-        
         check(){
             console.log(this.info);
         },
-        goQuestion(){
-            this.page = 'question';
-        },
-        goResult(){
-            this.page = 'result';
-        },
+        goQuestion: function(info){
+            this.$router.push({name:'question', params:{ info:info}});
 
-        // question
-        isMale(info){
-            if(info.gender == 1){
-                this.num = 2;
-            }}
-        ,
-        isFe(info){
-            if(info.gender == 2){
-                if(this.num==2){
-                    this.num=3;
-                }
-            }
         },
-        goNext(num,index){
-            if(num == 4){
-                const answerList=this.answerList;
-                this.goResult();
-                console.log(answerList);
-            }
-            else{
-                console.log(this.answerList);
-                this.answerList[num] = index;
-                this.num = this.num+1;
-            }
+        fnView(id){
+      this.paramId =id;
+    },
+        clickParams(){
+            this.$router.push({
+                name: 'question',
+                params: this.info ,
+            })
         },
-        
-
     },
     mounted(){
         this.check()
+        // this.goQuestion()
 
     },
     props: {
@@ -266,10 +207,9 @@ select:hover{
 .question-btn{
     margin-top: 40px;
     display: flex;
-    align-items:center;
-    justify-content:right;
+    align-items: center;
+    justify-content: right;
     color: #ED0800;
-    border:none;
 }
 
 .next-btn{
@@ -285,112 +225,5 @@ select:hover{
     height:70px;
     object-fit: cover;
     
-}
-
-
-/*  */
-/*  */
-/*  */
-/* 질문지 스타일 */
-/*  */
-/*  */
-/*  */
-
-
-
-.question{
-    background-color: #eee;
-    height: 100vh;
-    padding : 10vh 40px;
-}
-
-.question-sub{
-    text-align: left;
-    color:#666;
-    font-size: 14px;
-}
-
-.question-desc{
-    margin: 40px 0 40px 20px;
-    /* margin-left: 20px; */
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    text-align: left;
-    color:#666;
-}
-
-.question-desc .arrow{
-    margin-left: 50px;
-    margin-right: 10px;
-    font-size: 40px;
-    color: #ddd
-}
-
-
-      
-.progress {
-    margin : 0 auto;
-    width: 100%;
-    margin-top:8px;
-    background: #fff;
-    border: 1px solid #fff;
-    border-radius: 3px;
-    height: 30px;
-}
-.progress-bar {
-    height: 100%;
-    width: 30%;
-    border-radius: 3px;
-    background: #ed0800;
-}
-
-
-
-
-
-/* 질문 문제 */
-
-.question-title{
-    width: 60%;
-    font-weight: 400;
-    text-align: left;
-    margin-bottom: 30px;
-}
-
-
-/* 버튼 */
-.select-btn{
-    margin-bottom: 70px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.select-btn button{
-    margin-top: 20px ;
-    padding: 30px 30px;
-    
-    display: block;
-    width: 100%;
-    background-color: #fff;
-    
-    border: none;
-    border-radius: 10px;
-    
-    font-size: 20px;
-    color:#525252;
-}
-
-/* 선택사항 */
-
-.sub-option{
-    margin-bottom:20px;
-}
-.question-selected-option{
-    font-size: 12px;
-    color:#525252;
-    text-align: left;
-
 }
 </style>

@@ -32,13 +32,13 @@
         <div class="footer">
             만수무강 X 건보장
         </div>
-        {{getChimai()}}
+        <!-- {{getChimai()}} -->
     </div>
 </template>
 
 <script>
 // import Intro from './Intro.vue';
-import axios from 'axios';
+// import axios from 'axios';
 
 export default {
     name: 'Main',
@@ -49,20 +49,23 @@ export default {
 
     },
     methods: {
-        getChimai(){
-            axios.get(`http://drkjhyuck.pythonanywhere.com/dementiactr/?city_name=%EC%9A%A9%EC%9D%B8%EC%8B%9C`)
-            .then(res =>{
-                console.log(res);
-                console.log('성공!');
-                })
-            .catch((error) => {
-                console.error('에러는'+error);
-                }
-        );
+        // getChimai(){
+        //     axios.get(`http://drkjhyuck.pythonanywhere.com/dementiactr/?city_name=%EC%9A%A9%EC%9D%B8%EC%8B%9C`)
+        //     .then(res =>{
+        //         console.log(res);
+        //         console.log('성공!');
+        //         })
+        //     .catch((error) => {
+        //         console.error('에러는'+error);
+        //         }
+        // );
     },
     mounted() {
-        this.getChimai()
-    },
+        setTimeout(() =>{
+        this.showIntro = false;
+        },2000);
+    //     this.getChimai()
+    // },
     // openQ(id){
     //     this.paramId =id;
     //     let router = this.$router;
@@ -73,11 +76,6 @@ export default {
     components:{
         // Intro :Intro,
     },
-    mounted(){
-        setTimeout(() =>{
-        this.showIntro = false;
-        },2000);
-    }
 }
 </script>
 
