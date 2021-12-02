@@ -27,7 +27,9 @@
 </template>
 <script>
 import router from "../router";
-// import {  router } from "vue-router";
+
+// console.log(router.info);
+
 export default {
     name: 'Question',
     data(){

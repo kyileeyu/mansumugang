@@ -48,7 +48,10 @@
         <span>약 3분정도 소요 예정</span>
         </p>
     </div>
-    <router-link to="/question" class="question-btn">
+    <router-link class="question-btn" :to="{
+            name: 'question',
+            params: this.info ,
+          }">
         <p>다음페이지로 </p>
         <div class="next-btn">
             <img src="../assets/next.png"/>

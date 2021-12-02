@@ -67,8 +67,8 @@
     </div>
     <div class="footer">
             만수무강 X 건보장
-        </div>
-
+    </div>
+    {{getChimai()}}
 </div>
 </template>
 
@@ -89,17 +89,17 @@ export default {
   },
     methods:{
         getChimai(){
-        axios.get(`http://drkjhyuck.pythonanywhere.com/dementiactr/?city_name=%EC%9A%A9%EC%9D%B8%EC%8B%9C`)
-        .then(res =>{
-            console.log(res);
-            console.log('성공!');
-            // this.loadCity =res.data.result;
-            })
-        .catch((error) => {
-            console.error(error);
-            }
-            );
-        },
+            axios.get(`http://drkjhyuck.pythonanywhere.com/dementiactr/?city_name=%EC%9A%A9%EC%9D%B8%EC%8B%9C`)
+            .then(res =>{
+                console.log(res);
+                console.log('성공!');
+                // this.loadCity =res.data.result;
+                })
+            .catch((error) => {
+                console.error(error);
+                }
+                );
+            },
 
     },
     mounted(){
