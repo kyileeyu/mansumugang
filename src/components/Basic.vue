@@ -86,14 +86,42 @@
             <button @click="goNext(num,1)">맞아요</button>
             <button @click="goNext(num,2)">아니에요</button>
         </div>
-        <p class="question-sub sub-option">▷ 선택사항</p>
+
+        <div class="select-extra" v-if="selectNum==1">
+            <p>아이의 개월수를 입력하세요</p>
+            <input class="extra-input" placeholder='개월 수' type="number" /> 달
+            <button class="btn extra-btn" @click="next(num)">
+                다음으로
+            </button>
+        </div>
+        <div class="select-extra" v-if="selectNum==3">
+            <p class="handi-title">해당되는 장애를 입력하세요</p>
+            <div class="handicapped-list">
+                <input type="checkbox" id="handicapped" value="handicapped" v-model="Disabled">
+                <label for="jack">지체 및 뇌병변 장애인 </label>
+                <input type="checkbox" id="sight" value="sight" v-model="Disabled">
+                <label for="john">시각장애인</label><br/>
+                <input type="checkbox" id="deaf" value="deaf" v-model="Disabled">
+                <label for="mike">청각장애인</label>
+                <input type="checkbox" id="lang" value="lang" v-model="Disabled">
+                <label for="mike">언어장애인</label>
+            </div>
+            <button class="btn extra-btn" @click="next(num)">
+                다음으로
+            </button>
+        </div>
+        <div class="question-sub sub-option">▷ 선택사항
         <p class="question-selected-option">
-        {{info.age}}세, 
-        <span v-if="info.gender == 1">남성</span>
-        <span v-if="info.gender == 2">여성</span>,
-        <span v-if="answerList[0] == 2">여성</span>,
-         출산예정, 육아중, 1세 미만
+            {{info.age}}세, 
+            <span v-if="info.gender == 1">남성, </span>
+            <span v-if="info.gender == 2">여성, </span>
+            <span v-if="answerList[0] == 1">임신중, </span>
+            <span v-if="answerList[0] == 1">아이 1명, </span>
+            <span v-if="answerList[2] == 1">군인, </span>
+            <span v-if="answerList[4] == 1">흡연자, </span>
+            <span v-if="answerList[5] == 1">우울증, </span>
         </p>
+        </div>
     </div>
 
 
@@ -197,8 +225,11 @@ export default {
         },
 
         qList: ['임신중이신가요?','출산경험이 있으신가요?','군대에 복역중이신가요?',"장애가 있으신가요?","흡연을 하시나요?","우울증이 있으신가요?"],
+        answerList:[0,0,0,0,0,0],
         num:0,
-        answerList:[0,0,0,0,0,0]
+        selectNum:0,
+        babyMonth:0,
+        Disabled:[],
 
     //   showIntro: true,
     }},
@@ -219,6 +250,7 @@ export default {
         },
 
         // question
+
         isMale(){
             if(this.info.gender == 1){
                 this.num = 2;
@@ -231,14 +263,33 @@ export default {
                 }
             }
         },
+
+        openSelect(num){
+            this.selectNum = num;
+        },
+        closeSelect(){
+            this.selectNum =0;
+        },
+        next(){
+            this.num = this.num+1;
+            this.isFe();
+            this.closeSelect();
+        },
+
+
         goNext(num,index){
             this.answerList[num] = index;
             console.log(this.answerList);
-            if(num == 4){
+            if(num == 5){
                 this.goResult();
+            }
+            else if( index ==1 &&(num ==1 || num ==3)){
+                this.openSelect(num);
             }
             else{
                 this.num = this.num+1;
+                this.closeSelect();
+                this.isFe();
             }
         },
         
@@ -380,7 +431,7 @@ select:hover{
 .question{
     background-color: #eee;
     height: 100vh;
-    padding : 10vh 40px;
+    padding : 7vh 40px;
 }
 
 .question-sub{
@@ -440,7 +491,7 @@ select:hover{
 
 /* 버튼 */
 .select-btn{
-    margin-bottom: 70px;
+    margin-bottom: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -464,7 +515,7 @@ select:hover{
 /* 선택사항 */
 
 .sub-option{
-    margin-bottom:20px;
+    margin:30px 0;
 }
 .question-selected-option{
     font-size: 12px;
@@ -472,7 +523,41 @@ select:hover{
     text-align: left;
 
 }
+/* 추가 질문 */
+.select-extra{
+    font-size: 20px;
+    text-align: left;
+}
 
+.extra-input{
+    border:none;
+    margin-top: 20px;
+    padding: 5px 0 2px;
+    background-color: #eee;
+    color:#fff;
+    border-bottom: 2px solid #aaa;
+    text-align: right;
+}
+.extra-btn{
+    display: block;
+    float: right;
+    padding-left: 30px;
+    padding: 5px 0;
+    width: 30%;
+    height: 30px;
+    margin: 15px 0;
+    border:1px solid #ED0800;
+    color:#ED0800;
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+.handicapped-list{
+    font-size: 14px;
+}
+.handi-title{
+    margin-bottom: 20px;
+}
 
 
 /*  */
