@@ -67,10 +67,11 @@
 <!-- 질문지 -->
 
     <div class="question" v-if="page == 'question'">
-        <p class="question-sub">▷ 진행상황</p>
+            <div class="progress-turtle" v-bind:style="{'margin-left': (100/6)*(num) +'%' }">
+                <img src="../assets/nimo.png">
+            </div>
         <div class="progress">
-            <div class="progress-bar pg-23"></div>
-            <!-- <span>23%</span> -->
+            <div class="progress-bar" v-bind:style="{'width': (100/6)*(num) +'%' }"></div>
         </div>
         <div class="question-desc">
             <p>
@@ -89,7 +90,7 @@
 
         <div class="select-extra" v-if="selectNum==1">
             <p>아이의 개월수를 입력하세요</p>
-            <input class="extra-input" placeholder='개월 수' type="number" /> 달
+            <input class="extra-input" placeholder='개월 수' type="number" v-model="selected.babyMonth"/> 개월
             <button class="btn extra-btn" @click="next(num)">
                 다음으로
             </button>
@@ -97,13 +98,13 @@
         <div class="select-extra" v-if="selectNum==3">
             <p class="handi-title">해당되는 장애를 입력하세요</p>
             <div class="handicapped-list">
-                <input type="checkbox" id="handicapped" value="handicapped" v-model="Disabled">
+                <input type="checkbox" id="지체장애" value="지체장애" v-model="selected.disabled">
                 <label for="jack">지체 및 뇌병변 장애인 </label>
-                <input type="checkbox" id="sight" value="sight" v-model="Disabled">
+                <input type="checkbox" id="시각장애" value="시각장애" v-model="selected.disabled">
                 <label for="john">시각장애인</label><br/>
-                <input type="checkbox" id="deaf" value="deaf" v-model="Disabled">
+                <input type="checkbox" id="청각장애" value="청각장애" v-model="selected.disabled">
                 <label for="mike">청각장애인</label>
-                <input type="checkbox" id="lang" value="lang" v-model="Disabled">
+                <input type="checkbox" id="언어장애" value="언어장애" v-model="selected.disabled">
                 <label for="mike">언어장애인</label>
             </div>
             <button class="btn extra-btn" @click="next(num)">
@@ -111,16 +112,19 @@
             </button>
         </div>
         <div class="question-sub sub-option">▷ 선택사항
-        <p class="question-selected-option">
-            {{info.age}}세, 
-            <span v-if="info.gender == 1">남성, </span>
-            <span v-if="info.gender == 2">여성, </span>
-            <span v-if="answerList[0] == 1">임신중, </span>
-            <span v-if="answerList[0] == 1">아이 1명, </span>
-            <span v-if="answerList[2] == 1">군인, </span>
-            <span v-if="answerList[4] == 1">흡연자, </span>
-            <span v-if="answerList[5] == 1">우울증, </span>
-        </p>
+            <div class="question-selected-option">
+                {{info.age}}세, 
+                <span v-if="info.gender == 1">남성, </span>
+                <span v-if="info.gender == 2">여성, </span>
+                <span v-if="this.selected.pragnant == true">임신중, </span>
+                <span v-if="this.selected.babyMonth"> {{this.selected.babyMonth}}개월, </span>
+                <span v-if="this.selected.army == true">군인, </span>
+                <!-- <div class="if" v-for="i in 4" :key=i>
+                    <span v-if="this.selected.disabled[i]">{{this.selected.disabled[i-1]}}, </span>
+                </div> -->
+                <span v-if="this.selected.smoke == true">흡연자, </span>
+                <span v-if="this.selected.depression == true">우울증, </span>
+            </div>
         </div>
     </div>
 
@@ -152,7 +156,19 @@
     <div class="result-selected-list">
         <div class="result-selected">
             당신이 선택한 <br> 보장정보 입니다.
-            <div class="result-selected-option">{{info.age}}세, 여성, 출산예정, 육아중, 1세미만</div>
+            <div class="result-selected-option">
+                {{info.age}}세, 
+                <span v-if="info.gender == 1">남성, </span>
+                <span v-if="info.gender == 2">여성, </span>
+                <span v-if="this.selected.pragnant == true">임신중, </span>
+                <span v-if="this.selected.babyMonth"> {{this.selected.babyMonth}}개월, </span>
+                <span v-if="this.selected.army == true">군인, </span>
+                <!-- <div class="if" v-for="i in 4" :key=i>
+                    <span v-if="this.selected.disabled[i]">{{this.selected.disabled[i-1]}}, </span>
+                </div> -->
+                <span v-if="this.selected.smoke == true">흡연자, </span>
+                <span v-if="this.selected.depression == true">우울증, </span>
+            </div>
         </div>
     </div>
     <div class="result-info">
@@ -206,9 +222,8 @@
 <script>
 // import axios from 'axios';
 
-
 export default {
-  name: 'basic',
+    name: 'basic',
   data(){
     return {
         page:'basic',
@@ -223,30 +238,33 @@ export default {
             loca:'',
             city:''
         },
-
+        selected:{
+            pragnant:false,
+            babyMonth: '',
+            army: false,
+            disabled:[],
+            smoke: false,
+            depression: false
+        },
         qList: ['임신중이신가요?','출산경험이 있으신가요?','군대에 복역중이신가요?',"장애가 있으신가요?","흡연을 하시나요?","우울증이 있으신가요?"],
         answerList:[0,0,0,0,0,0],
         num:0,
         selectNum:0,
-        babyMonth:0,
-        Disabled:[],
 
     //   showIntro: true,
     }},
     components: {
         
-    },
+        },
     methods:{
         
-        check(){
-            console.log(this.info);
-        },
         goQuestion(){
             this.isMale();
             this.page = 'question';
         },
         goResult(){
             this.page = 'result';
+            console.log(this.selected );
         },
 
         // question
@@ -275,11 +293,12 @@ export default {
             this.isFe();
             this.closeSelect();
         },
-
-
         goNext(num,index){
             this.answerList[num] = index;
             console.log(this.answerList);
+            console.log(this.selected);
+            console.log(this.info);
+            this.addOption(num,index);
             if(num == 5){
                 this.goResult();
             }
@@ -293,16 +312,31 @@ export default {
             }
         },
         
+        addOption(num,index){
+            if(num==0 && index ==1 ){
+                this.selected.pragnant = true;
+            }
+            else if(num==2 && index ==1 ){
+                this.selected.army = true;
+            }
+            else if(num==4 && index ==1 ){
+                this.selected.smoke = true;
+            }
+            else if(num==5 && index ==1 ){
+                this.selected.depression = true;
+            }
+        }
 
     },
     mounted(){
-        this.check()
 
     },
     props: {
         // info : Object,
     },
 }
+
+
 </script>
 
 <style>
@@ -431,7 +465,7 @@ select:hover{
 .question{
     background-color: #eee;
     height: 100vh;
-    padding : 7vh 40px;
+    padding : 4vh 40px;
 }
 
 .question-sub{
@@ -473,6 +507,19 @@ select:hover{
     width: 30%;
     border-radius: 3px;
     background: #ed0800;
+}
+.progress-turtle{
+    width:50px;
+    height:50px;
+    object-fit: cover;
+}
+.progress-turtle img{
+    position: relative;
+    top: 28px;
+    right:25px;
+    width:50px;
+    height:50px;
+    object-fit: cover;
 }
 
 
@@ -534,7 +581,7 @@ select:hover{
     margin-top: 20px;
     padding: 5px 0 2px;
     background-color: #eee;
-    color:#fff;
+    color:#333;
     border-bottom: 2px solid #aaa;
     text-align: right;
 }
@@ -557,6 +604,9 @@ select:hover{
 }
 .handi-title{
     margin-bottom: 20px;
+}
+.info{
+    display: inline;
 }
 
 
