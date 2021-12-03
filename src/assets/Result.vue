@@ -68,7 +68,6 @@
     <div class="footer">
             만수무강 X 건보장
     </div>
-    {{getChimai()}}
 </div>
 </template>
 

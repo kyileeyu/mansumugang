@@ -2,7 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 // import Question from "./components/Question.vue";
 import Main from "./components/Main.vue";
 import Intro from "./components/Intro.vue";
-import Result from "./components/Result.vue";
+// import Result from "./assets/Result.vue";
 import Basic from "./components/Basic.vue";
 import Location from "./components/Location.vue";
 const routes = [
@@ -28,12 +28,12 @@ const routes = [
   //   // component: () => import("./components/question.vue"),
   //   props: true,
   // },
-  {
-    path: "/result",
-    name: "result",
-    component: Result,
-    // component: "answerList",
-  },
+  // {
+  //   path: "/result",
+  //   name: "result",
+  //   component: Result,
+  //   // component: "answerList",
+  // },
   {
     path: "/loca",
     name: "location",
