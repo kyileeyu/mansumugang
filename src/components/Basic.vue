@@ -703,7 +703,7 @@ select:hover{
 /* 결과 정보지 */
 .result-info{
     width: 100%;
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
     border-bottom: 3px solid #ddd;
 }
 

@@ -1,6 +1,9 @@
 <template>
     <!-- <Intro v-if="showIntro == true"/> -->
     <div v-if="showIntro == false" class="main">
+         <div class='wave -one'></div>
+        <div class='wave -two'></div>
+        <div class='wave -three'></div>
         <div class="header">
             <h3 class="header-title">
                 <span>안녕하세요 :D</span><br>
@@ -83,9 +86,9 @@ export default {
 .main{
     color:#fff;
     text-align: left;
-    background-image: url('../assets/3.png');
+    /* background-image: url('../assets/3.png');
     background-size: 100%;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
     background-color: #eee;
     object-fit: fill;
     height: 100vh;
@@ -97,6 +100,9 @@ export default {
     color: #888282;
 }
 .header-title{
+    position: absolute;
+    width: 100%;
+    text-align: center;
     padding-top: 140px;
     color: #FFF;
     font-weight: 400;
@@ -192,5 +198,55 @@ a:hover
     text-align: center;
     color: #525252;
     font-size: 12px;
+}
+
+/* 애니메이션 */
+.main {
+
+  position: relative;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.wave {
+  opacity: .4;
+  position: absolute;
+  top: 11%;
+  left: 50%;
+  background: #ED0800;
+  width: 500px;
+  height: 500px;
+  margin-left: -250px;
+  margin-top: -250px;
+  transform-origin: 50% 48%;
+  border-radius: 43%;
+  animation: drift 6000ms infinite linear;
+}
+
+.wave.-three {
+  animation: drift 5000ms infinite linear;
+}
+
+.wave.-two {
+  animation: drift 9000ms infinite linear;
+  opacity: .1;
+  background: yellow;
+}
+
+.box:after {
+  content: '';
+  display: block;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(#e8a, 1), rgba(#def, 0) 80%, rgba(white, .5));
+  z-index: 11;
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes drift {
+  from { transform: rotate(0deg); }
+  from { transform: rotate(360deg); }
 }
 </style>
