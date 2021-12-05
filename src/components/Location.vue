@@ -121,6 +121,7 @@ export default {
   data(){
     return {
     //   showIntro: true,
+    si:['하남시'],
 
     }
   },
@@ -129,21 +130,44 @@ export default {
   },
     methods:{
         getChimai(){
-        axios.get(`http://drkjhyuck.pythonanywhere.com/dementiactr/?city_name=%EC%9A%A9%EC%9D%B8%EC%8B%9C`)
-        .then(res =>{
-            console.log(res);
-            console.log('성공!');
-            // this.loadCity =res.data.result;
-            })
-        .catch((error) => {
-            console.error(error);
-            }
+            axios.get('http://drkjhyuck.pythonanywhere.com/dementiactr/?city_name=하남시')
+            .then(res =>{
+                console.log(res);
+                console.log('성공!');
+                })
+            .catch((error) => {
+                console.error('에러는'+error);
+                }
             );
         },
+        getChimai2(){
+            axios.get('http://drkjhyuck.pythonanywhere.com/nosmokectr?high_city=경기도')
+            .then(res =>{
+                console.log(res);
+                console.log('성공!');
+                })
+            .catch((error) => {
+                console.error('에러는'+error);
+                }
+            );
+        },
+        getChimai3(){
+            axios.get('http://drkjhyuck.pythonanywhere.com/bluectr?city_name=용인시')
+            .then(res =>{
+                console.log(res);
+                console.log('성공!');
+                })
+            .catch((error) => {
+                console.error('에러는'+error);
+                }
+            );
+        },
+
+        
         initMap() {
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div
             mapOption = {
-            center: new kakao.maps.LatLng(37.564343, 126.947613), // 지도의 중심좌표
+            center: new kakao.maps.LatLng(37.52487287539575, 126.90942458792783), // 지도의 중심좌표
             level: 3, // 지도의 확대 레벨
             };
         var map = new kakao.maps.Map(mapContainer, mapOption);
@@ -157,11 +181,13 @@ export default {
 
     },
     mounted(){
+        this.getChimai();
+        this.getChimai2();
+        this.getChimai3();
         if (window.kakao && window.kakao.maps) {
             this.initMap();
         } else {
             const script = document.createElement('script');
-            /* global kakao */
             script.onload = () => kakao.maps.load(this.initMap);
             script.src =
             'http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=2844ff5ba6815df9b368effb5f45d7b9&libraries=clusterer';

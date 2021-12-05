@@ -41,7 +41,7 @@
 
 <script>
 // import Intro from './Intro.vue';
-// import axios from 'axios';
+import axios from 'axios';
 
 export default {
     name: 'Main',
@@ -52,22 +52,23 @@ export default {
 
     },
     methods: {
-        // getChimai(){
-        //     axios.get(`http://drkjhyuck.pythonanywhere.com/dementiactr/?city_name=%EC%9A%A9%EC%9D%B8%EC%8B%9C`)
-        //     .then(res =>{
-        //         console.log(res);
-        //         console.log('성공!');
-        //         })
-        //     .catch((error) => {
-        //         console.error('에러는'+error);
-        //         }
-        // );
+        getChimai(){
+            axios.get(`http://drkjhyuck.pythonanywhere.com/dementiactr/?city_name=하남시`)
+            .then(res =>{
+                console.log(res);
+                console.log('성공!');
+                })
+            .catch((error) => {
+                console.error('에러는'+error);
+                }
+            );
+        },
     },
     mounted() {
         setTimeout(() =>{
         this.showIntro = false;
         },2000);
-    //     this.getChimai()
+        this.getChimai();
     // },
     // openQ(id){
     //     this.paramId =id;

@@ -418,7 +418,7 @@ export default {
             
             }
 
-        }
+        },
 
     },
     mounted(){
