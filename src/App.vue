@@ -50,9 +50,9 @@ h1,h2,h3{
   height :100%;
   margin: 0 auto;
   background-color: #eee;
-  background-image: url('./assets/eee.png');
+  /* background-image: url('./assets/eee.png'); */
   background-size: 375px, 100vh;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
 }
 html{
   margin: 0;
