@@ -35,7 +35,7 @@ export default {
 <style>
 *{
   box-sizing: border-box;
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'Noto Sans KR','Nanum Gothic', sans-serif;
 }
 h1,h2,h3{
   margin:0;
@@ -50,6 +50,9 @@ h1,h2,h3{
   height :100%;
   margin: 0 auto;
   background-color: #eee;
+  background-image: url('./assets/eee.png');
+  background-size: 375px, 100vh;
+  background-attachment: fixed;
 }
 html{
   margin: 0;

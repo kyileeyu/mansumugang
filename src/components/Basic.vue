@@ -30,14 +30,14 @@
                 지역
             </p>
             <div class="select">
-            <select v-model="info.loca" aria-label="지역 선택">
+            <select v-model="info.loca" aria-label="지역 선택" class="select-loca">
                 <option value="seoul">서울특별시</option>
                 <option value="gunggi">경기도</option>
             </select>
-            <select class="select"  v-model="info.city" v-if="info.loca =='seoul'" aria-label="시 선택">
+            <select class="select select-loca"  v-model="info.city" v-if="info.loca =='seoul'" aria-label="시 선택" >
                 <option value="">-</option>
             </select>
-            <select class="select"  v-model="info.city" aria-label="시 선택" v-else>
+            <select class="select select-loca"  v-model="info.city" aria-label="시 선택" v-else>
                 <option v-for="i in si" v-bind:key="i" > {{i}}</option>
             </select>
             </div>
@@ -145,10 +145,10 @@
     </p>
     <div class="result-item">
         <div class="tax-desc">
-            현재 20대 평균<br>
+            현재 고객님 연령의 평균<br>
             건강보험료 납부금액은
             <div class="tax-result">
-                <span>25,000</span>원 입니다.
+                <span>{{findTax()}}</span> 입니다.
             </div>
         </div>
         
@@ -173,39 +173,115 @@
     </div>
     <div class="result-info">
         <div class="result-item">
-            <div class="info-title">출산지원금</div>
+            <div class="info-title">건강검진</div>
             <div class="info-desc">
-                2006년 11월 이후 출생자는<br/>
-                자녀 수 상관없이 250,000원 지급
+            "국민건강보험에서 실시하는 건강검진은 별도의 본인부담이 없습니다."
+            </div>
+            <div class="info-desc">
+            <strong>건강검진이란?</strong> 건강상태 확인과 질병의 예방 및 조기발견을 목적으로 건강검진기관을 통하여 의학적 검진을 시행하는 것을 말합니다.
+            </div>
+            <div class="info-desc">
+            <strong>필요성?</strong> 건강검진은 초기단계에서 질병을 발견하기 때문에 많은 경우 간단한 처치만으로 질병치료에 큰 도움을 주거나 건강을 유지할 수 있습니다.
+            </div>
+            <div class="info-desc">
+            <strong>정기적 검진?</strong> 건강검진은 1-2회 받았다고 하여 일생동안 효과가 유지되는 것은 아니므로, 정기적으로 검진을 받을 때 효과가 있습니다.
+            </div>
+            <div class="info-desc">
+            <strong>일반건강검진?</strong> 고혈압, 당뇨병 등 심뇌혈관질환을 예방하고 조기에 발견하는 것을 목표로 합니다. 공통항목(흉부방사선, 혈액검사, 요검사 등), 성연령별 항목(이상지질혈증검사, b형 간염, 인지기능장애, 우울증, 생활습관평가 등)
+            </div>
+        </div>
+        <div class="result-item">
+            <div class="info-title">군 복무 중 휴가기간에 보험적용</div>
+            <div class="info-desc">
+            군 복무 중 휴가기간에 보험적용 현역병(육, 해, 공 현역병, 사관생도, 의무경찰, 의무소방대원, 해양의무경찰)등이
+            군 병원이 아닌 일반 요양기관에서 건강보험으로 진료를 받을 경우 그 치료비를 국가가 부담함.
+            <br><br>
+            가까운 동네병원에서 치료가 불가능할 경우, 상급종합병원에서 치료 가능 상급종합병원에서 치료가 필요시,
+            1차 치료를 했던 병원의 의사에게서 ‘요양급여의뢰서’를 발급받아 건강보험증과 함께 제출해야 함.
+            </div>
+        </div>
+        <div class="result-item">
+            <div class="info-title">치석제거 건강보험 적용</div>
+            <div class="info-desc">
+            대상 : 만 19세 이상 (후속처치 없이 치서제거만으로 치료가 종료되는 환자) 
+            <br><br>
+            급여횟수 : 연 1회
+            </div>
+        </div>
+        <div class="result-item">
+            <div class="info-title">노인틀니 건강보험적용</div>
+            <div class="info-desc">
+            -완전틀니 대상 : 만 65세 이상 (상악 또는 하악에 치아가 전혀 없는 경우)
+            -부분틀니 대상 : 만 65세 이상 (상학 또는 하악의 치아결손으로 남은 치아를 이용하여 부분틀니 제작이 가능한 경우)
+            <br><br>
+            본인부담률 : 요양급여비용 총액의 30%
+            급여적용기간 : 1악당 7년
+            무상보상기간 : 틀니 장착 후, 3개월에 6회에 한하여 시술료 없이 진찰료만 산정
+            -부분틀니 대상 : 만 65세 이상 (상학 또는 하악의 치아결손으로 남은 치아를 이용하여 부분틀니 제작이 가능한 경우)
             </div>
         </div>
         
         <div class="result-item">
             <div class="info-title">임신 출산 진료비 지원</div>
             <div class="info-desc">
-                임신 1회당 일태아 <br/>
-                자녀 수 상관없이 250,000원 지급
+                - 출산비
+                - 설명: '요양기관 이외의 장소' + '2006년 11월 이후' 출산한 경우 자녀 수에 상관없이 250,000을 지급함.
+                (* 요양기관 이외의 장소란? 병원, 의원, 조산원이 아닌 자택, 택시, 119 이송 중 분만한 경우)
+            
+                - 건강보험 진료비 지원제도
+                -지원범위: 임산부(임신 및 출산 관련 진료받은 급여+비급여 비중 중 본인이 부담한 금액)
+                1세 미만 영유아 (요양기관에서의 진료비용 +약제 +치료 및 재료구입비용 금액)
+                -지원절차: 지원신청서 발급 - 요양기관정보마당에 정보 입력 - 바우치신청 - 카드수령 후 1년까지 사용
+                -지원금액: 임신 1회당 일태아 임산부는 60만원, 다태아 임산부는 100만원/ 
+                분만취약지의 경우 일태아 임산부는 80만원, 다태아 임산부는 120만원이 지원됨.
+            </div>
+        </div>
+
+
+        <div class="result-item">
+            <div class="info-title">장애인 보조기기 급여비</div>
+            <div class="info-desc">
+                대상: 장애인등록법에 따라 등록한 장애인인 건강보험가입자 또는 피부양자
+                혜택내용: 장애인보조기기를 구입한 경우, 해당 기준액 이내에서 구입가의 90%를 장애인보조기기 급여비로 지급. (단, 소모품비용 및 수리비용은 지급하지 않음)
+                지급품목:
+            </div>
+            <div class="info-desc">
+            - 지체 및 뇌병변 장애인용: 팔의지 보조기, 다리의지 보조기, 척추보조기, 골반보조기, 지팡이, 목발, 휠체어, 전동휠체어, 전동스쿠터, 맞춤형교정용 신발, 자세보조용구, 욕창예방 매트리스, 이동식전동리프트, 전,후 지지워커, 욕창예방 방석
+            </div>
+            <div class="info-desc">
+            - 시각 장애인용: 저시력 보조안경, 콘택트렌즈, 돋보기, 망원경, 의안, 흰 지팡이
+            </div>
+            <div class="info-desc">
+            청각 장애인용: 보청기
+            </div>
+            <div class="info-desc">
+                언어장애인용: 체외용 인공후두
+                청구인: 장애인 또는 같은 건강보험증에 등재된 가족
+                구비서류: 보조기기급여비 청구서, 보조기기처방전, 세금계산서, 보조기기 검수확인서, 바코드를 확인할 수 있는 보조기기 사진
+                청구기한: 구입일로부터 3년 이내
+                지급절차: 가까운 공단 지사에 방문하거나 우편으로 접수하면 7일 이내에 지급
+                미지급대상: 근로복지공단 또는 보훈청 등으로부터 동일 유형의 보조기기를 지급받는 경우, 장애인등록일 이전에 구입한 경우, 구입일로부터 3년이 경과한 경우
             </div>
         </div>
     </div>
     <!-- 위치보기란 -->
     <div class="location-list">
         <div class="location-list-item">
-            <p>우울증 치료   </p>
+            <p>우울증 개선 센터  </p>
             >
             <router-link to="/loca" class="location-btn">
                 위치보기
             </router-link>
         </div>
         <div class="location-list-item">
-            <p>치과 급여</p>
+            <p>금연센터</p>
             >
             <router-link to="/loca" class="location-btn">
                 위치보기
             </router-link>
         </div>
         <div class="location-list-item">
-            <p>건강검진</p>
+            <p>치매상담 센터</p>
             >
             <router-link to="/loca" class="location-btn">
                 위치보기
@@ -233,9 +309,9 @@ export default {
         '여주시','과천시','고양시','남양주시','파주시','의정부시',
         '양주시','구리시','포천시','동두천시','가평군','연천군'],
         info:{
-            age:'',
-            gender: '',
-            loca:'',
+            age:0,
+            gender: 0,
+            loca:'지역 선택',
             city:''
         },
         selected:{
@@ -325,6 +401,23 @@ export default {
             else if(num==5 && index ==1 ){
                 this.selected.depression = true;
             }
+        },
+
+        // 결과지
+        findTax(){
+            if(this.info.age <= 6){
+                return "5,616 원";
+            }else if(this.info.age <= 18){
+                return "6,706 원";
+            }else if(this.info.age <= 39){
+                return "99,239 원";
+            }else if(this.info.age <= 64){
+                return "143,258 원";
+            }else{
+                return "42,149 원";
+            
+            }
+
         }
 
     },
@@ -391,15 +484,18 @@ select:hover{
 .select{
     margin:0;
 }
-.select select{
+/* .select select{
     padding-left: 0;
-}
+} */
 .selected-item-title{
     width: 50%;
     text-align: center;
     border-right: 1px solid #aaa;
     border-radius: 0;;
 
+}.select-loca{
+    width:50%;
+    padding-left: 0px;
 }
 
 
