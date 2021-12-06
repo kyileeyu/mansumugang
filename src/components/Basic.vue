@@ -289,14 +289,11 @@
         </div>
     </div>
     <div class="addthis_inline_share_toolbox"></div>
-    <a class="kakao" @click="sendkakao"> 카카오톡 </a>
-
+     <img class="kakao_btn" src="@/assets/kakao.png" @click="kakaoLink" />
     <div class="footer">
             만수무강 X 건보장
     </div>
 </div>
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<!-- <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60279d5e287d38f9"></script> -->
 
 </template>
 
@@ -333,10 +330,11 @@ export default {
         num:0,
         selectNum:0,
 
-    //   showIntro: true,
     }},
     
     components: {
+        // Share : Share,
+
         
         },
     methods:{
@@ -422,29 +420,22 @@ export default {
                 return "143,258 원";
             }else{
                 return "42,149 원";
-            
             }
 
         },
-        sendkakao: function () { 
-            window.Kakao.init('발급받은 JavaScript 키입력');
-            window.Kakao.Link.sendDefault({ 
-                objectType: 'feed',
-                content: {
-                    title: '공유할 될 제목',
-                    description: '공유될 내용',
-                    imageUrl: '../assets/eee.png',
-                    link: { 
-                        mobileWebUrl: 'http://localhost:8001',
-                        webUrl: 'http://localhost:8001',
-                        }, }, 
-                        buttons: [ {
-                            title: '웹으로 보기',
-                            link: { mobileWebUrl:
-                            'http://localhost:8001', webUrl: 'http://localhost:8001',
-                        }, }, ]
-            ,})
+        kakaoLink () {
+        window.Kakao.Link.sendDefault({
+            objectType: 'text',
+            text:
+            '당신의 건강보장 내역을 확인해보세요!',
+            link: {
+            mobileWebUrl:
+                'https://developers.kakao.com',
+            webUrl:
+                'https://developers.kakao.com',
         }
+        })},
+        
 
 
     },

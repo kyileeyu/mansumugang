@@ -130,7 +130,7 @@ export default {
   },
     methods:{
         getChimai(){
-            axios.get('http://drkjhyuck.pythonanywhere.com/dementiactr/?city_name=하남시')
+            axios.get('https://drkjhyuck.pythonanywhere.com/dementiactr/?city_name=하남시')
             .then(res =>{
                 console.log(res);
                 console.log('성공!');
@@ -140,8 +140,8 @@ export default {
                 }
             );
         },
-        getChimai2(){
-            axios.get('http://drkjhyuck.pythonanywhere.com/nosmokectr?high_city=경기도')
+        getChimaii(){
+            axios.get('/nosmokectr?high_city=경기도/')
             .then(res =>{
                 console.log(res);
                 console.log('성공!');
@@ -151,8 +151,41 @@ export default {
                 }
             );
         },
-        getChimai3(){
-            axios.get('http://drkjhyuck.pythonanywhere.com/bluectr?city_name=용인시')
+        getChimaiii(){
+            axios.get('https://drkjhyuck.pythonanywhere.com/bluectr/?city_name=%EC%9A%A9%EC%9D%B8%EC%8B%9C/')
+            .then(res =>{
+                console.log(res);
+                console.log('성공!');
+                })
+            .catch((error) => {
+                console.error('에러는'+error);
+                }
+            );
+        },
+        getChimaiiii(){
+            axios.get('https://drkjhyuck.pythonanywhere.com/normalchk/?age=40&format=json&gender=Female/')
+            .then(res =>{
+                console.log(res);
+                console.log('성공!');
+                })
+            .catch((error) => {
+                console.error('에러는'+error);
+                }
+            );
+        },
+        getChimaiiiii(){
+            axios.get('https://drkjhyuck.pythonanywhere.com/childchk/?childage=66&format=json/')
+            .then(res =>{
+                console.log(res);
+                console.log('성공!');
+                })
+            .catch((error) => {
+                console.error('에러는'+error);
+                }
+            );
+        },
+        getChimaiiiiii(){
+            axios.get('https://drkjhyuck.pythonanywhere.com/cancerchk?gender=Female&age=46/')
             .then(res =>{
                 console.log(res);
                 console.log('성공!');
@@ -182,8 +215,11 @@ export default {
     },
     mounted(){
         this.getChimai();
-        this.getChimai2();
-        this.getChimai3();
+        this.getChimaii();
+        this.getChimaiii();
+        this.getChimaiiii();
+        this.getChimaiiiii();
+        this.getChimaiiiiii();
         if (window.kakao && window.kakao.maps) {
             this.initMap();
         } else {
