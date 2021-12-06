@@ -145,7 +145,7 @@
     </p>
     <div class="result-item">
         <div class="tax-desc">
-            현재 고객님 연령의 평균<br>
+            현재 고객님 연령의 월 평균<br>
             건강보험료 납부금액은
             <div class="tax-result">
                 <span>{{findTax()}}</span> 입니다.
@@ -288,14 +288,20 @@
             </router-link>
         </div>
     </div>
+    <div class="addthis_inline_share_toolbox"></div>
+    <a class="kakao" @click="sendkakao"> 카카오톡 </a>
+
     <div class="footer">
             만수무강 X 건보장
     </div>
 </div>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<!-- <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60279d5e287d38f9"></script> -->
 
 </template>
 
 <script>
+
 // import axios from 'axios';
 
 export default {
@@ -329,6 +335,7 @@ export default {
 
     //   showIntro: true,
     }},
+    
     components: {
         
         },
@@ -419,6 +426,26 @@ export default {
             }
 
         },
+        sendkakao: function () { 
+            window.Kakao.init('발급받은 JavaScript 키입력');
+            window.Kakao.Link.sendDefault({ 
+                objectType: 'feed',
+                content: {
+                    title: '공유할 될 제목',
+                    description: '공유될 내용',
+                    imageUrl: '../assets/eee.png',
+                    link: { 
+                        mobileWebUrl: 'http://localhost:8001',
+                        webUrl: 'http://localhost:8001',
+                        }, }, 
+                        buttons: [ {
+                            title: '웹으로 보기',
+                            link: { mobileWebUrl:
+                            'http://localhost:8001', webUrl: 'http://localhost:8001',
+                        }, }, ]
+            ,})
+        }
+
 
     },
     mounted(){
@@ -603,11 +630,14 @@ select:hover{
     width: 30%;
     border-radius: 3px;
     background: #ed0800;
+    transition: width 0.2s ease-out 0s;
 }
 .progress-turtle{
     width:50px;
     height:50px;
     object-fit: cover;
+    transition: margin-left 0.2s ease-out 0s;
+
 }
 .progress-turtle img{
     position: relative;
@@ -616,6 +646,8 @@ select:hover{
     width:50px;
     height:50px;
     object-fit: cover;
+    transition: margin-left 0.2s ease-out 0s;
+
 }
 
 
@@ -738,7 +770,7 @@ select:hover{
 
     background-size: 375px, 30%;
     background-color: #eee;
-    height: 100vh;
+    /* height: 100vh; */
     padding : 10vh 20px;
 }
 

@@ -1,13 +1,12 @@
 <template>
-  <!-- <Intro v-if="showIntro == true"/> -->
+  <Intro v-if="showIntro == true"/>
   <router-view></router-view>
   <!-- <Main v-if="showIntro == false"/> -->
 </template>
 
 <script>
 
-// import Intro from './components/Intro.vue';
-// import Main from './components/Main.vue';
+import Intro from './components/Intro.vue';
 
 export default {
   name: 'App',
@@ -18,7 +17,7 @@ export default {
     }
   },
   components: {
-    // Intro :Intro,
+    Intro :Intro,
     // Main : Main,
   },
   methods:{
