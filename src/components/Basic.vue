@@ -288,8 +288,7 @@
             </router-link>
         </div>
     </div>
-    <div class="addthis_inline_share_toolbox"></div>
-     <img class="kakao_btn" src="@/assets/kakao.png" @click="kakaoLink" />
+    <img class="kakao_btn" src="@/assets/kakao.png" @click="kakaoLink" />
     <div class="footer">
             만수무강 X 건보장
     </div>
