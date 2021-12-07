@@ -4,7 +4,7 @@ import Main from "./components/Main.vue";
 import Intro from "./components/Intro.vue";
 // import Result from "./assets/Result.vue";
 import Basic from "./components/Basic.vue";
-import Location from "./components/Location.vue";
+import Depression from "./components/Depression.vue";
 const routes = [
   {
     path: "/intro",
@@ -35,9 +35,9 @@ const routes = [
   //   // component: "answerList",
   // },
   {
-    path: "/loca",
-    name: "location",
-    component: Location,
+    path: "/depression",
+    name: "Depression",
+    component: Depression,
   },
 ];
 
