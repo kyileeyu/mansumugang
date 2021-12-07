@@ -98,13 +98,13 @@
         <div class="select-extra" v-if="selectNum==3">
             <p class="handi-title">해당되는 장애를 입력하세요</p>
             <div class="handicapped-list">
-                <input type="checkbox" id="지체장애" value="지체장애" v-model="selected.disabled">
+                <input type="checkbox" id="지체장애" value="지체장애" @click="clickDisable('brain')">
                 <label for="jack">지체 및 뇌병변 장애인 </label>
-                <input type="checkbox" id="시각장애" value="시각장애" v-model="selected.disabled">
+                <input type="checkbox" id="시각장애" value="시각장애"  @click="clickDisable('sight')" >
                 <label for="john">시각장애인</label><br/>
-                <input type="checkbox" id="청각장애" value="청각장애" v-model="selected.disabled">
+                <input type="checkbox" id="청각장애" value="청각장애"  @click="clickDisable('deaf')" >
                 <label for="mike">청각장애인</label>
-                <input type="checkbox" id="언어장애" value="언어장애" v-model="selected.disabled">
+                <input type="checkbox" id="언어장애" value="언어장애"  @click="clickDisable('lang')" >
                 <label for="mike">언어장애인</label>
             </div>
             <button class="btn extra-btn" @click="next(num)">
@@ -119,9 +119,10 @@
                 <span v-if="this.selected.pragnant == true">임신중, </span>
                 <span v-if="this.selected.babyMonth"> {{this.selected.babyMonth}}개월, </span>
                 <span v-if="this.selected.army == true">군인, </span>
-                <!-- <div class="if" v-for="i in 4" :key=i>
-                    <span v-if="this.selected.disabled[i]">{{this.selected.disabled[i-1]}}, </span>
-                </div> -->
+                <span v-if="selected.disabled.brain == true">지체 및 뇌병변 장애, </span>
+                <span v-if="selected.disabled.sight == true">시각장애, </span>
+                <span v-if="selected.disabled.deaf == true">청각장애, </span>
+                <span v-if="selected.disabled.lang == true">언어장애, </span>
                 <span v-if="this.selected.smoke == true">흡연자, </span>
                 <span v-if="this.selected.depression == true">우울증, </span>
             </div>
@@ -163,9 +164,10 @@
                 <span v-if="this.selected.pragnant == true">임신중, </span>
                 <span v-if="this.selected.babyMonth"> {{this.selected.babyMonth}}개월, </span>
                 <span v-if="this.selected.army == true">군인, </span>
-                <!-- <div class="if" v-for="i in 4" :key=i>
-                    <span v-if="this.selected.disabled[i]">{{this.selected.disabled[i-1]}}, </span>
-                </div> -->
+                <span v-if="selected.disabled.brain == true">지체 및 뇌병변 장애, </span>
+                <span v-if="selected.disabled.sight == true">시각장애, </span>
+                <span v-if="selected.disabled.deaf == true">청각장애, </span>
+                <span v-if="selected.disabled.lang == true">언어장애, </span>
                 <span v-if="this.selected.smoke == true">흡연자, </span>
                 <span v-if="this.selected.depression == true">우울증, </span>
             </div>
@@ -241,17 +243,17 @@
                 - <strong>대상</strong>:<strong><span class="col-red">장애인등록법에 따라 등록한 장애인</span></strong>인 건강보험가입자 또는 피부양자<br>
                 - <strong>혜택내용</strong> : 장애인보조기기를 구입한 경우, 해당 기준액 이내에서 <strong class="col-red">구입가의 90%를 장애인보조기기 급여비</strong>로 지급. (단, 소모품비용 및 수리비용은 지급하지 않음) <br>
                 - <strong>지급물품</strong><br>
-                <p>
-                - 지체 및 뇌병변 장애인용: 팔의지 보조기, 다리의지 보조기, 척추보조기, 골반보조기, 지팡이, 목발, 휠체어, 전동휠체어, 전동스쿠터, 맞춤형교정용 신발, 자세보조용구, 욕창예방 매트리스, 이동식전동리프트, 전,후 지지워커, 욕창예방 방석
+                <p v-if="selected.disabled.brain == true">
+                - <strong>지체 및 뇌병변 장애인용</strong> : 팔의지 보조기, 다리의지 보조기, 척추보조기, 골반보조기, 지팡이, 목발, 휠체어, 전동휠체어, 전동스쿠터, 맞춤형교정용 신발, 자세보조용구, 욕창예방 매트리스, 이동식전동리프트, 전,후 지지워커, 욕창예방 방석
                 </p>
-                <p>
-                - 시각 장애인용: 저시력 보조안경, 콘택트렌즈, 돋보기, 망원경, 의안, 흰 지팡이
+                <p v-if="selected.disabled.sight == true">
+                - <strong>시각 장애인용 </strong>: 저시력 보조안경, 콘택트렌즈, 돋보기, 망원경, 의안, 흰 지팡이
                 </p>
-                <p>
-                - 청각 장애인용: 보청기
+                <p v-if="selected.disabled.deaf == true">
+                - <strong>청각 장애인용</strong> : 보청기
                 </p>
-                <p>
-                - 언어장애인용: 체외용 인공후두<br>
+                <p v-if="selected.disabled.lang == true">
+                - <strong>언어장애인용</strong> : 체외용 인공후두<br>
                 - 청구인: 장애인 또는 같은 건강보험증에 등재된 가족<br>
                 - 구비서류: 보조기기급여비 청구서, 보조기기처방전, 세금계산서, 보조기기 검수확인서, 바코드를 확인할 수 있는 보조기기 사진<br>
                 - 청구기한: 구입일로부터 3년 이내<br>
@@ -285,7 +287,7 @@
             </router-link>
         </div>
     </div>
-    <img class="kakao_btn" src="@/assets/kakao.png" @click="kakaoLink" />
+    <img class="kakao_btn" src="@/assets/link-share.png" @click="kakaoLink" />
     <div class="footer">
             만수무강 X 건보장
     </div>
@@ -317,7 +319,12 @@ export default {
             pragnant:false,
             babyMonth: '',
             army: false,
-            disabled:[],
+            disabled:{
+                brain: false,
+                sight: false,
+                deaf: false,
+                lang: false
+            },
             smoke: false,
             depression: false
         },
@@ -401,6 +408,20 @@ export default {
             }
             else if(num==5 && index ==1 ){
                 this.selected.depression = true;
+            }
+        },
+        clickDisable(word){
+            if(word == 'brain'){
+                this.selected.disabled.brain = true;
+            }
+            else if(word == 'sight'){
+                this.selected.disabled.sight = true;
+            }
+            else if(word == 'deaf'){
+                this.selected.disabled.deaf  = true;
+            }
+            else if(word == 'lang'){
+                this.selected.disabled.lang  = true;
             }
         },
 
@@ -870,5 +891,11 @@ select:hover{
     color: #fff;
     background-color: #F95841;
     font-weight: 500;
+}
+
+/* 카카오톡 링크공유 */
+.kakao_btn{
+    width: 50px;
+    height: 50px;
 }
 </style>
