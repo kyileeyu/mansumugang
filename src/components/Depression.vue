@@ -11,7 +11,7 @@
             - <strong>주요 프로그램:</strong> 정신사회 재활 지원사업, 아동청소년정신건강증진사업, 우울증 및 자살예방사업, 알코올중독관리사업, 정신건강 환경조성사업 <br>
             - <strong>장소:</strong> 전국에 광역정신건강증진센터와 기초정신건강증진센터 총 226개소가 설치된 기관 <br>
             - <strong>상담 및 안내 서비스:</strong> 정신건강상담전화<br>(지역번호)1577-0199 <br>
-            - <a src="https://www.nhis.or.kr/nhis/healthin/retrieveMindHltMelyMesr.d>">우울증 자가진단 사이트 클릭!</a>
+            - <a href="https://www.nhis.or.kr/nhis/healthin/retrieveMindHltMelyMesr.do">우울증 자가진단 사이트 클릭!</a>
         </div>
         
     </div>
