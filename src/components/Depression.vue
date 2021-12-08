@@ -128,22 +128,22 @@ export default {
         initMap() {
             var mapContainer = document.getElementById('map'), // 지도를 표시할 div
             mapOption = {
-            center: new kakao.maps.LatLng(37.4706038241,126.8170617140), // 지도의 중심좌표
+            center: new kakao.maps.LatLng(37.49426645,126.7809633628), // 지도의 중심좌표
             level: 8, // 지도의 확대 레벨
             };
         var map = new kakao.maps.Map(mapContainer, mapOption);
         
         var positions = [
             {
-                content: '<div>경기도 부천시 양지로 134<br>032-625-9871</div>', 
+                content: '<div class="marker">경기도 부천시 양지로 134<br>032-625-9871</div>', 
                 latlng: new kakao.maps.LatLng(37.4706038241, 126.817061714)
             },
             {
-                content: '<div>경기도 부천시 옥산로10번길 16<br>032-625-4423</div>', 
+                content: '<div class="marker">경기도 부천시 옥산로10번길 16<br>032-625-4423</div>', 
                 latlng: new kakao.maps.LatLng(37.49426645, 126.7809633628)
             },
             {
-                content: '<div>"경기도 부천시 성오로 172"<br>032-625-9881</div>', 
+                content: '<div class="marker">경기도 부천시 성오로 172<br>032-625-9881</div>', 
                 latlng: new kakao.maps.LatLng(37.5283469861, 126.7960281955)
             },
             {
@@ -215,5 +215,8 @@ export default {
 }
 .depression-desc{
     font-size:12px;
+}
+.marker{
+    font-size: 10px;
 }
 </style>
