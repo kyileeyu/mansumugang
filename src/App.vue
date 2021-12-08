@@ -1,32 +1,32 @@
 <template>
-  <Intro v-if="showIntro == true"/>
+  <!-- <Intro v-if="showIntro == true"/> -->
   <router-view></router-view>
   <!-- <Main v-if="showIntro == false"/> -->
 </template>
 
 <script>
 
-import Intro from './components/Intro.vue';
+// import Intro from './components/Intro.vue';
 
 export default {
   name: 'App',
   data(){
     return {
-      showIntro: true,
+      // showIntro: true,
 
     }
   },
   components: {
-    Intro :Intro,
+    // Intro :Intro,
     // Main : Main,
   },
   methods:{
 
   },
   mounted(){
-    setTimeout(() =>{
-      this.showIntro = false;
-    },2000);
+    // setTimeout(() =>{
+    //   this.showIntro = false;
+    // },2000);
   }
 }
 </script>

@@ -7,12 +7,12 @@ import Basic from "./components/Basic.vue";
 import Depression from "./components/Depression.vue";
 const routes = [
   {
-    path: "/intro",
+    path: "/",
     name: "intro",
     component: Intro,
   },
   {
-    path: "/",
+    path: "/main",
     name: "main",
     component: Main,
   },

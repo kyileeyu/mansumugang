@@ -5,6 +5,9 @@
         </p>
         <h1 class="intro-title">건보장</h1>
         <p class="team-name">만 수 무 강</p>
+        <router-link to="/main" class="btn main-btn">
+                    다  음    
+        </router-link>
     </div>
 
 </template>
@@ -34,6 +37,7 @@ export default {
     }
     .intro-title{
         font-size: 60px;
+        letter-spacing: 0.2em;
         font-family: 'Nanum Pen Script', cursive;
     }
     .team-name{
@@ -42,6 +46,12 @@ export default {
         right: 0;
         bottom : 20px;
         
+    }
+    .main-btn{
+        border: 1px solid #fff;
+        background: none;
+        display: block;
+        margin-top: 300px;
     }
 </style>
 
